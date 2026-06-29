@@ -1,0 +1,22 @@
+{
+  "name": "local-habit-lab",
+  "version": "0.2.0",
+  "description": "A local-first habit experiment tracker for testing routines, notes, and streaks.",
+  "private": false,
+  "type": "commonjs",
+  "scripts": {
+    "start": "node server.js",
+    "validate": "node scripts/validate.js",
+    "test": "node scripts/test.js",
+    "package": "node scripts/package-release.js"
+  },
+  "keywords": [
+    "habit-tracker",
+    "local-first",
+    "productivity",
+    "experiments",
+    "javascript"
+  ],
+  "author": "",
+  "license": "UNLICENSED"
+}

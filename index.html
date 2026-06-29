@@ -1,0 +1,148 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Local Habit Lab</title>
+    <link rel="stylesheet" href="./styles.css">
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="workspace">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow">Local Habit Lab</p>
+            <h1>Today&apos;s experiments</h1>
+          </div>
+          <button class="primary-button" id="addHabitButton" type="button">+ Habit</button>
+        </header>
+
+        <section class="stats-grid" aria-label="Habit stats">
+          <article>
+            <span id="activeHabitCount">0</span>
+            <p>active habits</p>
+          </article>
+          <article>
+            <span id="todayCheckins">0</span>
+            <p>check-ins today</p>
+          </article>
+          <article>
+            <span id="bestStreak">0</span>
+            <p>best streak</p>
+          </article>
+          <article>
+            <span id="archivedHabitCount">0</span>
+            <p>archived habits</p>
+          </article>
+        </section>
+
+        <section class="panel weekly-panel">
+          <div class="section-header compact">
+            <div>
+              <h2>Weekly Summary</h2>
+              <p id="weeklyDetail" class="subtle">0 of 0 possible check-ins completed this week</p>
+            </div>
+            <strong id="weeklyScore" class="weekly-score">0%</strong>
+          </div>
+          <ol id="weeklyDays" class="weekly-days" aria-label="Weekly check-in summary"></ol>
+        </section>
+
+        <section class="panel">
+          <div class="section-header">
+            <h2>Habits</h2>
+            <div class="segmented-control" aria-label="Habit filter">
+              <button class="is-active" type="button" data-filter="all">All</button>
+              <button type="button" data-filter="today">Today</button>
+              <button type="button" data-filter="watching">Watching</button>
+              <button type="button" data-filter="archive">Archive</button>
+            </div>
+          </div>
+          <div class="habit-list" id="habitList"></div>
+        </section>
+      </section>
+
+      <aside class="sidebar">
+        <section class="panel">
+          <div class="section-header compact">
+            <h2>Lab Notes</h2>
+          </div>
+          <form id="noteForm" class="note-form">
+            <textarea id="noteInput" rows="4" placeholder="What did you notice today?"></textarea>
+            <button class="secondary-button" type="submit">Save note</button>
+          </form>
+          <div id="noteList" class="note-list"></div>
+        </section>
+
+        <section class="panel">
+          <div class="section-header compact">
+            <h2>Backup</h2>
+          </div>
+          <div class="backup-actions">
+            <button class="secondary-button" id="exportButton" type="button">Export JSON</button>
+            <button class="ghost-button" id="importButton" type="button">Import</button>
+            <input id="importInput" type="file" accept="application/json,.json" hidden>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-header compact">
+            <h2 id="habitFormTitle">New Habit</h2>
+          </div>
+          <form id="habitForm" class="habit-form">
+            <label>
+              Name
+              <input id="habitName" type="text" maxlength="42" placeholder="Walk after lunch" required>
+            </label>
+            <label>
+              Hypothesis
+              <textarea id="habitHypothesis" rows="3" placeholder="If I do this, then..."></textarea>
+            </label>
+            <div class="form-row">
+              <label>
+                Target
+                <input id="habitTarget" type="number" min="1" max="30" value="7">
+              </label>
+              <label>
+                Unit
+                <select id="habitUnit">
+                  <option value="days">days</option>
+                  <option value="sessions">sessions</option>
+                  <option value="times">times</option>
+                </select>
+              </label>
+            </div>
+            <div class="form-actions">
+              <button class="primary-button full-width" id="habitSubmitButton" type="submit">Create habit</button>
+              <button class="ghost-button full-width" id="cancelEditButton" type="button" hidden>Cancel edit</button>
+            </div>
+          </form>
+        </section>
+      </aside>
+    </main>
+
+    <template id="habitTemplate">
+      <article class="habit-card">
+        <div class="habit-main">
+          <button class="check-button" type="button" aria-label="Toggle today"></button>
+          <div>
+            <h3></h3>
+            <p class="hypothesis"></p>
+            <div class="progress-track">
+              <span></span>
+            </div>
+            <p class="meta"></p>
+            <div class="history-grid" aria-label="14-day habit history"></div>
+          </div>
+        </div>
+        <div class="habit-actions">
+          <button class="ghost-button" data-action="edit" type="button">Edit</button>
+          <button class="ghost-button" data-action="archive" type="button">Archive</button>
+          <button class="ghost-button" data-action="restore" type="button" hidden>Restore</button>
+        </div>
+      </article>
+    </template>
+
+    <script src="./habitLogic.js"></script>
+    <script src="./app.js"></script>
+  </body>
+</html>
