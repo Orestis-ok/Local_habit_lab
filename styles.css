@@ -105,7 +105,7 @@ h2 {
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 14px;
   margin-bottom: 18px;
 }
@@ -141,6 +141,52 @@ h2 {
 
 .section-header.compact {
   margin-bottom: 12px;
+}
+
+.subtle {
+  margin: 5px 0 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.weekly-panel {
+  margin-bottom: 18px;
+}
+
+.weekly-score {
+  display: inline-grid;
+  min-width: 74px;
+  min-height: 54px;
+  place-items: center;
+  border-radius: 8px;
+  background: #17201c;
+  color: #fff;
+  font-size: 1.35rem;
+}
+
+.weekly-days {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 8px;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.weekly-days li {
+  display: grid;
+  gap: 4px;
+  min-height: 56px;
+  align-content: center;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffef9;
+  text-align: center;
+}
+
+.weekly-days span {
+  color: var(--muted);
+  font-size: 0.78rem;
 }
 
 .segmented-control {
@@ -219,6 +265,10 @@ h2 {
   background: #fffef9;
 }
 
+.habit-card:has(.check-button:disabled) {
+  opacity: 0.76;
+}
+
 .habit-main {
   display: grid;
   grid-template-columns: 44px minmax(0, 1fr);
@@ -277,6 +327,40 @@ h2 {
 .meta {
   margin: 8px 0 0;
   font-size: 0.9rem;
+}
+
+.history-grid {
+  display: grid;
+  grid-template-columns: repeat(14, 1fr);
+  gap: 4px;
+  width: min(260px, 100%);
+  margin-top: 12px;
+}
+
+.history-day {
+  display: block;
+  aspect-ratio: 1;
+  border-radius: 3px;
+  background: #dfe6dc;
+}
+
+.history-day.is-complete {
+  background: var(--accent);
+}
+
+.habit-actions,
+.backup-actions,
+.form-actions {
+  display: grid;
+  gap: 8px;
+}
+
+.habit-actions {
+  min-width: 104px;
+}
+
+.backup-actions {
+  grid-template-columns: 1fr 1fr;
 }
 
 .habit-form,
@@ -344,7 +428,11 @@ textarea {
   }
 
   .stats-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .weekly-days {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
   }
 
   .segmented-control {
@@ -354,5 +442,13 @@ textarea {
 
   .segmented-control button {
     width: 100%;
+  }
+}
+
+@media (max-width: 520px) {
+  .stats-grid,
+  .weekly-days,
+  .backup-actions {
+    grid-template-columns: 1fr;
   }
 }

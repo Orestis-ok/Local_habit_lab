@@ -30,6 +30,21 @@
             <span id="bestStreak">0</span>
             <p>best streak</p>
           </article>
+          <article>
+            <span id="archivedHabitCount">0</span>
+            <p>archived habits</p>
+          </article>
+        </section>
+
+        <section class="panel weekly-panel">
+          <div class="section-header compact">
+            <div>
+              <h2>Weekly Summary</h2>
+              <p id="weeklyDetail" class="subtle">0 of 0 possible check-ins completed this week</p>
+            </div>
+            <strong id="weeklyScore" class="weekly-score">0%</strong>
+          </div>
+          <ol id="weeklyDays" class="weekly-days" aria-label="Weekly check-in summary"></ol>
         </section>
 
         <section class="panel">
@@ -39,6 +54,7 @@
               <button class="is-active" type="button" data-filter="all">All</button>
               <button type="button" data-filter="today">Today</button>
               <button type="button" data-filter="watching">Watching</button>
+              <button type="button" data-filter="archive">Archive</button>
             </div>
           </div>
           <div class="habit-list" id="habitList"></div>
@@ -59,7 +75,18 @@
 
         <section class="panel">
           <div class="section-header compact">
-            <h2>New Habit</h2>
+            <h2>Backup</h2>
+          </div>
+          <div class="backup-actions">
+            <button class="secondary-button" id="exportButton" type="button">Export JSON</button>
+            <button class="ghost-button" id="importButton" type="button">Import</button>
+            <input id="importInput" type="file" accept="application/json,.json" hidden>
+          </div>
+        </section>
+
+        <section class="panel">
+          <div class="section-header compact">
+            <h2 id="habitFormTitle">New Habit</h2>
           </div>
           <form id="habitForm" class="habit-form">
             <label>
@@ -84,7 +111,10 @@
                 </select>
               </label>
             </div>
-            <button class="primary-button full-width" type="submit">Create habit</button>
+            <div class="form-actions">
+              <button class="primary-button full-width" id="habitSubmitButton" type="submit">Create habit</button>
+              <button class="ghost-button full-width" id="cancelEditButton" type="button" hidden>Cancel edit</button>
+            </div>
           </form>
         </section>
       </aside>
@@ -101,12 +131,18 @@
               <span></span>
             </div>
             <p class="meta"></p>
+            <div class="history-grid" aria-label="14-day habit history"></div>
           </div>
         </div>
-        <button class="ghost-button" type="button">Archive</button>
+        <div class="habit-actions">
+          <button class="ghost-button" data-action="edit" type="button">Edit</button>
+          <button class="ghost-button" data-action="archive" type="button">Archive</button>
+          <button class="ghost-button" data-action="restore" type="button" hidden>Restore</button>
+        </div>
       </article>
     </template>
 
+    <script src="./habitLogic.js"></script>
     <script src="./app.js"></script>
   </body>
 </html>
